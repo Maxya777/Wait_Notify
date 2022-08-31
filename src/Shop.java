@@ -1,16 +1,11 @@
+import java.util.ArrayList;
+import java.util.List;
+
 public class Shop {
 
-    private int car = 0;
+    private List<Car> cars = new ArrayList<>();
 
-    public int getCar() {
-        return car;
-    }
-
-    public void makeCar() {
-        car++;
-    }
-
-    public void sellCar() {
-        car--;
+    public List<Car> getCars() {
+        return cars;
     }
 }

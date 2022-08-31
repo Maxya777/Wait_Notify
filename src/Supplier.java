@@ -22,14 +22,14 @@ public class Supplier extends Thread {
         synchronized (shop) {
             try {
                 System.out.println(Thread.currentThread().getName() + ": машина в пути");
-                shop.makeCar();
                 Thread.sleep(DELIVER_TIME);
+                shop.getCars().add(new Car());
                 System.out.println(Thread.currentThread().getName() + ": новая лада уже в салоне");
-                System.out.println("Машин в салоне " + shop.getCar());
+                System.out.println("Машин в салоне " + shop.getCars().size());
                 Thread.sleep(DELIVER_TIME);
                 shop.notify();
             } catch (InterruptedException e) {
-                Thread.currentThread().interrupt();
+                e.printStackTrace();
             }
         }
     }

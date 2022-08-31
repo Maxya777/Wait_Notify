@@ -7,24 +7,22 @@ public class Buyer extends Thread {
     }
 
     public void run() {
-            buyCar();
+        buyCar();
     }
 
     public void buyCar() {
         synchronized (shop) {
             try {
                 System.out.println(Thread.currentThread().getName() + " заходит в салон");
-                if (shop.getCar() <= 0) {
+                Thread.sleep(1000);
+                while (shop.getCars().size() == 0) {
                     System.out.println("Машин нет");
                     shop.wait();
                 }
-                if (shop.getCar() > 0) {
-                    shop.sellCar();
-                    System.out.println(Thread.currentThread().getName() + " - уехал на новой ладе в закат...");
-                }
-                System.out.println("Maшин в салоне " + shop.getCar());
+                shop.getCars().remove(0);
+                System.out.println(Thread.currentThread().getName() + " - уехал на новой ладе в закат...");
             } catch (InterruptedException e) {
-                Thread.currentThread().interrupt();
+                e.printStackTrace();
             }
         }
     }

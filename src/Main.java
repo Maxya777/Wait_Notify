@@ -13,11 +13,10 @@ public class Main {
             list.add(buyer);
             buyer.start();
         }
-
         Thread supplier = new Thread(null, new Supplier(shop), "Поставщик ");
         supplier.start();
 
-        for(Thread thread : list) {
+        for (Thread thread : list) {
             thread.join();
         }
         supplier.interrupt();

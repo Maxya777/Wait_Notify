@@ -14,7 +14,7 @@ public class Supplier extends Thread {
                 Thread.sleep(DELIVER_TIME);
             } while (!isInterrupted());
         } catch (InterruptedException e) {
-            Thread.currentThread().interrupt();
+            e.printStackTrace();
         }
     }
 
